@@ -1,10 +1,14 @@
 from discord.ext import commands
+from PIL import Image
+from selenium import webdriver
 import os
 import traceback
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
-
+driver = webdriver.PhantomJS()
+driver.get("https://challonge.com/s23h7vfc/module")
+driver.save_screenshot("screenshot.png")
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -16,6 +20,7 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
+    await ctx.send_file("screenshot.png")
 
 
 bot.run(token)
