@@ -6,9 +6,6 @@ import traceback
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
-driver = webdriver.PhantomJS()
-driver.get("https://challonge.com/s23h7vfc/module")
-driver.save_screenshot("screenshot.png")
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -19,6 +16,9 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def ping(ctx):
+    driver = webdriver.PhantomJS()
+    driver.get("https://challonge.com/s23h7vfc/module")
+    driver.save_screenshot("screenshot.png")
     await ctx.send('pong')
     await ctx.send_file("screenshot.png")
 
