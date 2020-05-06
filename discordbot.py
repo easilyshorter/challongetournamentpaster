@@ -19,6 +19,6 @@ async def ping(ctx):
     driver.get("https://challonge.com/s23h7vfc/module")
     driver.save_screenshot("screenshot.png")
     await ctx.send('ponga')
-    await ctx.send("./screenshot.png")
+    await ctx.channel.send(file="./screenshot.png")
 
 bot.run(token)
