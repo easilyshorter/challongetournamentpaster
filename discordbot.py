@@ -1,8 +1,6 @@
 from discord.ext import commands
 from PIL import Image
-require 'selenium-webdriver'
-caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {binary: "/app/.apt/usr/bin/google-chrome", args: ["--headless"]})
-driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
+from selenium import webdriver
 import os
 import traceback
 
@@ -18,7 +16,7 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def ping(ctx):
-    driver = webdriver.PhantomJS()
+    driver = webdriver.Chrome()
     driver.get("https://challonge.com/s23h7vfc/module")
     driver.save_screenshot("screenshot.png")
     await ctx.send('ponga')
