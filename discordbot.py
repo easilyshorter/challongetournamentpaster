@@ -1,6 +1,8 @@
 from discord.ext import commands
 from PIL import Image
-from selenium import webdriver
+require 'selenium-webdriver'
+caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {binary: "/app/.apt/usr/bin/google-chrome", args: ["--headless"]})
+driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
 import os
 import traceback
 
