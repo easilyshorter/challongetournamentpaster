@@ -13,14 +13,12 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-
 @bot.command()
 async def ping(ctx):
     driver = webdriver.Chrome()
     driver.get("https://challonge.com/s23h7vfc/module")
     driver.save_screenshot("screenshot.png")
     await ctx.send('ponga')
-    await ctx.send_file("screenshot.png")
-
+    await ctx.send(file=discord.File('screenshot.png'))
 
 bot.run(token)
