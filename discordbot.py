@@ -1,24 +1,17 @@
-from discord.ext import commands
-from PIL import Image
-from selenium import webdriver
-import os
-import traceback
+import discord
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+client = discord.Client()
 
-@bot.event
-async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
 
-@bot.command()
-async def ping(ctx):
-    driver = webdriver.Chrome()
-    driver.get("https://challonge.com/s23h7vfc/module")
-    driver.save_screenshot("screenshot.png")
-    await ctx.send('ponga')
-    await ctx.channel.send(file='screenshot.png')
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
 
-bot.run(token)
+    if message.content.startswith('$hello'):
+        await message.channel.send('Hello!')
+
+client.run('your token here')
